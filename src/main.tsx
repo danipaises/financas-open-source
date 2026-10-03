@@ -5,11 +5,14 @@ import App from './App'
 import './styles.css'
 import './logo-upload.css'
 import './pwa-guide.css'
+import './mobile-viewport-fix.css'
 import { installLogoUploadEnhancer } from './logo-upload-enhancer'
 import { installPwaGuide } from './pwa-guide'
+import { installMobileViewportFix } from './mobile-viewport-fix'
 
 installLogoUploadEnhancer()
 installPwaGuide()
+installMobileViewportFix()
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
