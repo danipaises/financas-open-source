@@ -69,7 +69,7 @@ async function uploadImage(file: File): Promise<string> {
 }
 
 function enhance(label: HTMLLabelElement) {
-  if (label.dataset.imageUploadReady === '1') return
+  if (label.dataset.imageUploadReady === '1' && label.querySelector('.fx-upload-widget')) return
   const urlInput = label.querySelector<HTMLInputElement>('input')
   if (!urlInput) return
 
