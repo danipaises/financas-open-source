@@ -18,7 +18,11 @@ export default function Login(){
     if(!isSupabaseConfigured)return setMessage('Configure o Supabase no Cloudflare.')
     setBusy(true);setMessage('')
     const result=mode==='signup'
-      ? await supabase.auth.signUp({email,password})
+      ? await supabase.auth.signUp({
+          email,
+          password,
+          options:{emailRedirectTo:`${window.location.origin}/app`}
+        })
       : await supabase.auth.signInWithPassword({email,password})
     setBusy(false)
     if(result.error)return setMessage(result.error.message)
