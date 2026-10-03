@@ -4,8 +4,8 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "node scripts/patch-international-safe.mjs && node scripts/patch-auto-fx.mjs && node scripts/patch-international-totals.mjs && node scripts/patch-income-ui.mjs && node scripts/run-card-billing-safe.mjs && node scripts/patch-account-balances.mjs && node scripts/patch-home-bank-summary.mjs && vite",
-    "build": "node scripts/patch-international-safe.mjs && node scripts/patch-auto-fx.mjs && node scripts/patch-international-totals.mjs && node scripts/patch-income-ui.mjs && node scripts/run-card-billing-safe.mjs && node scripts/patch-account-balances.mjs && node scripts/patch-home-bank-summary.mjs && vite build",
+    "dev": "node scripts/patch-international-safe.mjs && node scripts/patch-auto-fx.mjs && node scripts/patch-international-totals.mjs && node scripts/patch-income-ui.mjs && node scripts/run-card-billing-safe.mjs && node scripts/patch-account-balances.mjs && node scripts/patch-home-bank-summary.mjs && node scripts/patch-carry-balance.mjs && vite",
+    "build": "node scripts/patch-international-safe.mjs && node scripts/patch-auto-fx.mjs && node scripts/patch-international-totals.mjs && node scripts/patch-income-ui.mjs && node scripts/run-card-billing-safe.mjs && node scripts/patch-account-balances.mjs && node scripts/patch-home-bank-summary.mjs && node scripts/patch-carry-balance.mjs && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit"
   },
