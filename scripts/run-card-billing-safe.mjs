@@ -6,9 +6,12 @@ const source = path.resolve('scripts/patch-card-billing.mjs')
 const temp = path.resolve('scripts/.patch-card-billing-fixed.mjs')
 let code = fs.readFileSync(source, 'utf8')
 
-// O patch original contém JSX dentro de uma string JS delimitada por aspas duplas.
-// Esta ocorrência específica precisa usar aspas simples para que o próprio patch seja JavaScript válido.
+// Corrige duas incompatibilidades do patch original antes de executá-lo:
+// 1) JSX com aspas duplas dentro de uma string JS delimitada por aspas duplas.
+// 2) O guia inicial não possui mais placeholder="0,00" no campo de limite,
+//    então o padrão antigo não encontrava a segunda ocorrência e abortava o build.
 code = code.replace('className="fx-inline-hint"', "className='fx-inline-hint'")
+code = code.replaceAll(' placeholder=\\"0,00\\"', '')
 
 fs.writeFileSync(temp, code)
 try {
