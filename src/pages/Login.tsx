@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { ArrowLeft, ShieldCheck } from 'lucide-react'
-import { isSupabaseConfigured, supabase } from '../lib/supabase'
+import { supabase } from '../lib/supabase'
 
 const googleEnabled=import.meta.env.VITE_GOOGLE_AUTH_ENABLED==='true'
 
@@ -15,19 +15,23 @@ export default function Login(){
 
   async function submit(e:React.FormEvent){
     e.preventDefault()
-    if(!isSupabaseConfigured)return setMessage('Configure o Supabase no Cloudflare.')
     setBusy(true);setMessage('')
-    const result=mode==='signup'
-      ? await supabase.auth.signUp({
-          email,
-          password,
-          options:{emailRedirectTo:`${window.location.origin}/app`}
-        })
-      : await supabase.auth.signInWithPassword({email,password})
-    setBusy(false)
-    if(result.error)return setMessage(result.error.message)
-    if(mode==='signup'&&!result.data.session)return setMessage('Conta criada. Confirme seu e-mail para continuar.')
-    navigate('/app')
+    try{
+      const result=mode==='signup'
+        ? await supabase.auth.signUp({
+            email,
+            password,
+            options:{emailRedirectTo:`${window.location.origin}/app`}
+          })
+        : await supabase.auth.signInWithPassword({email,password})
+      if(result.error)return setMessage(result.error.message)
+      if(mode==='signup'&&!result.data.session)return setMessage('Conta criada. Confirme seu e-mail para continuar.')
+      navigate('/app')
+    }catch(err){
+      setMessage(err instanceof Error?err.message:'Não foi possível conectar ao Supabase.')
+    }finally{
+      setBusy(false)
+    }
   }
 
   async function signInGoogle(){
