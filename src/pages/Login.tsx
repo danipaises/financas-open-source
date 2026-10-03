@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { ArrowLeft, ShieldCheck } from 'lucide-react'
 import { isSupabaseConfigured, supabase } from '../lib/supabase'
 
+const googleEnabled=import.meta.env.VITE_GOOGLE_AUTH_ENABLED==='true'
+
 export default function Login(){
   const [email,setEmail]=useState('')
   const [password,setPassword]=useState('')
@@ -25,7 +27,6 @@ export default function Login(){
   }
 
   async function signInGoogle(){
-    if(!isSupabaseConfigured)return setMessage('Supabase ainda não configurado.')
     const {error}=await supabase.auth.signInWithOAuth({provider:'google',options:{redirectTo:`${window.location.origin}/app`}})
     if(error)setMessage(error.message)
   }
@@ -35,8 +36,7 @@ export default function Login(){
     <img className="auth-logo" src="https://i.postimg.cc/MpCZkZSr/icon-192.png" alt=""/>
     <h1>{mode==='signin'?'Entre no seu financeiro':'Crie sua conta'}</h1>
     <p>Seus dados ficam separados e protegidos por usuário.</p>
-    <button className="google-btn" onClick={signInGoogle}>G&nbsp;&nbsp;Continuar com Google</button>
-    <div className="separator"><span/>ou<span/></div>
+    {googleEnabled&&<><button className="google-btn" onClick={signInGoogle}>G&nbsp;&nbsp;Continuar com Google</button><div className="separator"><span/>ou<span/></div></>}
     <form onSubmit={submit}>
       <label>E-mail<input type="email" required value={email} onChange={e=>setEmail(e.target.value)} placeholder="voce@email.com"/></label>
       <label>Senha<input type="password" required minLength={6} value={password} onChange={e=>setPassword(e.target.value)} placeholder="Mínimo 6 caracteres"/></label>
