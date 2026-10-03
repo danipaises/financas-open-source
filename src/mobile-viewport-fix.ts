@@ -55,12 +55,20 @@ function normalizeMobileViewport() {
 
   if (main) {
     main.style.boxSizing = 'border-box'
+    main.style.paddingBottom = 'calc(92px + env(safe-area-inset-bottom))'
   }
 
+  // Mantém a navegação principal sempre visível na parte inferior do PWA.
   if (bottom) {
     resetElement(bottom, viewportWidth)
+    bottom.style.position = 'fixed'
     bottom.style.left = '0'
-    bottom.style.right = 'auto'
+    bottom.style.right = '0'
+    bottom.style.bottom = '0'
+    bottom.style.top = 'auto'
+    bottom.style.zIndex = '1000'
+    bottom.style.display = 'grid'
+    bottom.style.gridTemplateColumns = 'repeat(5, minmax(0, 1fr))'
   }
 }
 
