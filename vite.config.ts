@@ -6,8 +6,17 @@ export default defineConfig({
   plugins:[react(),VitePWA({
     registerType:'autoUpdate',
     manifest:{
-      name:'Finanças Open Source',short_name:'Finanças',description:'Gerenciador financeiro pessoal open source.',
-      theme_color:'#07140f',background_color:'#07140f',display:'standalone',start_url:'/app',scope:'/',
+      id:'/app',
+      name:'Finanças Open Source',
+      short_name:'Finanças',
+      description:'Gerenciador financeiro pessoal open source com compras, receitas, assinaturas, parcelamentos e múltiplas moedas.',
+      theme_color:'#07140f',
+      background_color:'#07140f',
+      display:'standalone',
+      start_url:'/app',
+      scope:'/',
+      orientation:'any',
+      categories:['finance','productivity'],
       icons:[
         {src:'https://i.postimg.cc/MpCZkZSr/icon-192.png',sizes:'192x192',type:'image/png'},
         {src:'https://i.postimg.cc/Pq1XdGX2/icon-512.png',sizes:'512x512',type:'image/png'},
