@@ -14,6 +14,11 @@ export default defineConfig({
         {src:'https://i.postimg.cc/mr7LTxLV/icon-maskable-512.png',sizes:'512x512',type:'image/png',purpose:'maskable'}
       ]
     },
-    workbox:{navigateFallback:'/index.html'}
+    workbox:{
+      navigateFallback:'/index.html',
+      cleanupOutdatedCaches:true,
+      clientsClaim:true,
+      skipWaiting:true
+    }
   })]
 })
