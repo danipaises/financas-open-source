@@ -4,7 +4,7 @@ import type { Session } from '@supabase/supabase-js'
 import { supabase } from './lib/supabase'
 import Landing from './pages/Landing'
 import Login from './pages/Login'
-import Dashboard from './pages/Dashboard2'
+import Dashboard from './pages/Dashboard3'
 
 export default function App() {
   const [session, setSession] = useState<Session | null>(null)
