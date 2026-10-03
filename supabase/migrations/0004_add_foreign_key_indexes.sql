@@ -1,0 +1,14 @@
+create index if not exists cards_account_id_idx on public.cards(account_id);
+create index if not exists installment_plans_account_id_idx on public.installment_plans(account_id);
+create index if not exists installment_plans_card_id_idx on public.installment_plans(card_id);
+create index if not exists installment_plans_category_id_idx on public.installment_plans(category_id);
+create index if not exists recurring_incomes_account_id_idx on public.recurring_incomes(account_id);
+create index if not exists recurring_incomes_category_id_idx on public.recurring_incomes(category_id);
+create index if not exists recurring_incomes_user_id_idx on public.recurring_incomes(user_id);
+create index if not exists subscriptions_account_id_idx on public.subscriptions(account_id);
+create index if not exists subscriptions_card_id_idx on public.subscriptions(card_id);
+create index if not exists subscriptions_category_id_idx on public.subscriptions(category_id);
+create index if not exists transactions_account_id_idx on public.transactions(account_id);
+create index if not exists transactions_card_id_idx on public.transactions(card_id);
+create index if not exists transactions_category_id_idx on public.transactions(category_id);
+create index if not exists transactions_installment_plan_id_idx on public.transactions(installment_plan_id);
