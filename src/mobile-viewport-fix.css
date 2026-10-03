@@ -1,0 +1,71 @@
+/* Correção defensiva para largura lateral no PWA Android */
+@media (max-width: 900px) {
+  html,
+  body,
+  #root {
+    width: 100dvw !important;
+    max-width: 100dvw !important;
+    min-width: 100dvw !important;
+    min-height: 100dvh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+    overscroll-behavior-x: none !important;
+    transform: none !important;
+    translate: none !important;
+    scale: 1 !important;
+    zoom: 1 !important;
+    background: #06100c !important;
+  }
+
+  .fx-app,
+  .fx-main,
+  .fx-view {
+    width: 100dvw !important;
+    max-width: 100dvw !important;
+    min-width: 100dvw !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    transform: none !important;
+    translate: none !important;
+    scale: 1 !important;
+    zoom: 1 !important;
+  }
+
+  .fx-app {
+    display: block !important;
+    overflow-x: hidden !important;
+  }
+
+  .fx-main {
+    box-sizing: border-box !important;
+    padding-left: max(14px, env(safe-area-inset-left)) !important;
+    padding-right: max(14px, env(safe-area-inset-right)) !important;
+  }
+
+  .fx-bottom {
+    left: 0 !important;
+    right: auto !important;
+    width: 100dvw !important;
+    max-width: 100dvw !important;
+    transform: none !important;
+    translate: none !important;
+    scale: 1 !important;
+  }
+
+  /* Evita que o resumo de bancos cause arrasto/estouro lateral. */
+  .fx-home-bank-scroll {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    overflow: visible !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .fx-home-bank-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex: none !important;
+  }
+}
