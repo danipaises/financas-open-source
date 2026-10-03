@@ -1,0 +1,35 @@
+name: Apply logo upload patch
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/patch-logo-upload.mjs'
+      - '.github/workflows/apply-logo-upload-patch.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply patch
+        run: node scripts/patch-logo-upload.mjs
+      - name: Commit generated changes
+        run: |
+          if git diff --quiet; then
+            echo "No changes needed"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/pages/Dashboard3.tsx src/dashboard3.css
+          git commit -m "feat(logos): allow direct image uploads"
+          git push
